@@ -17,27 +17,20 @@ MongoClient.connect(connectionURL,
         
         const db = client.db(database)
         
-        db.collection('users').findOne( { _id: new ObjectID('5d964ffa4ab2552d682f4d9e') }, (error, user) => {
-                if (error) {
-                    return console.log("Unable to fetch user")
-                }
-
-                console.log(user)
-            }
-        )
-
-        db.collection('users').find( { age: 31 }).toArray((error, users) => {
+        db.collection('tasks').findOne({_id: new ObjectID('5d9650f344b229558cdb5c82')}, (error, task) => {
             if (error) {
-                return console.log("Unable to fetch users")
+                return console.log('Unable to acquire task')
             }
-            console.log(users)
+
+            console.log(task)
         })
-        
-        db.collection('users').find( { age: 31 }).count((error, count) => {
+
+        db.collection('tasks').find({completed: false}).toArray((error, tasks) => {
             if (error) {
-                return console.log("Unable to fetch users")
+                return console.log('Unable to acquire tasks')
             }
-            console.log(count)
+
+            console.log(tasks)
         })
         
     }
