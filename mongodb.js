@@ -60,15 +60,11 @@ MongoClient.connect(connectionURL,
         //     console.log(error)
         // })
 
-        db.collection('users').deleteMany({age: 40}).then((result) => {
-            console.log('Deleted count: ' + result.deletedCount)
+        db.collection('tasks').deleteOne({description: 'Call David'}).then((result) => {
+            console.log(result.deletedCount)
         }).catch((error) => {
             console.log(error)
         })
-
-        
-
-
     }
 )
 
