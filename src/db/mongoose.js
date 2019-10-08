@@ -39,7 +39,7 @@ const User = mongoose.model('User', {
         minlength: 7,
         trim: true,
         validate(value) {
-            if (value.includes('password')) {
+            if (value.toLowerCase.includes('password')) {
                 throw new Error('Password cannot contain password')
             }
         }
