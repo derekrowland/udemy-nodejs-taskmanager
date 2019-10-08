@@ -1,19 +1,9 @@
 // CRUD create read update delete
 
-// const mongodb = require('mongodb')
-// const mongoClient = mongodb.MongoClient
-
 const {MongoClient, ObjectID} = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const database = 'task-manager'
-
-const id = new ObjectID()
-console.log(id.id)
-console.log(id.id.length)
-console.log(id.toHexString())
-console.log(id.toHexString().length)
-
 
 MongoClient.connect(connectionURL, 
     {
@@ -27,59 +17,17 @@ MongoClient.connect(connectionURL,
         
         const db = client.db(database)
         
-        // db.collection('users').insertOne({
-        //     name: 'Derek',
-        //     age: 31
-        //     }, (error, result) => {
-        //     if (error) {
-        //         return console.log('Unable to insert user')
-        //     } 
+        db.collection('users').findOne(
+            {
+                _id: new ObjectID('5d964ffa4ab2552d682f4d9e')
+            }, (error, user) => {
+                if (error) {
+                    return console.log("Unable to fetch user")
+                }
 
-        //     console.log(result.ops)
-        // })
-
-        // db.collection('users').insertMany(
-        //     [
-        //         {
-        //             name: 'Jen',
-        //             age: 32
-        //         },
-        //         {
-        //             name: 'Jerry',
-        //             age: 40
-        //         }
-        //     ], (error, result) => {
-        //         if (error) {
-        //             return console.log('Unable to insert documents')
-        //         }
-
-        //         console.log(result.ops)
-        //     }
-        // )
-
-        // db.collection('tasks').insertMany(
-        //     [
-        //         {
-        //             _id: id,
-        //             description: 'Call David',
-        //             completed: true
-        //         },
-        //         {
-        //             description: 'Ride bike',
-        //             completed: false
-        //         },
-        //         {
-        //             description: 'Open package',
-        //             complete: false
-        //         }
-        //     ], (error, result) => {
-        //         if (error) {
-        //             return console.log('Unable to insert tasks')
-        //         }
-
-        //         console.log(result.ops)
-        //     }
-        // )
+                console.log(user)
+            }
+        )
     }
 )
 
