@@ -41,9 +41,7 @@ MongoClient.connect(connectionURL,
         const updatePromise = db.collection('users').updateOne({
             _id: new ObjectID("5d964e2a055c671da810dbce")
         }, {
-            $set: {
-                name: 'Mike'
-            }
+            $inc: { age: 1 }
         }).then((result) => {
             console.log(result)
         }).catch((error) => {
