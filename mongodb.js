@@ -17,22 +17,38 @@ MongoClient.connect(connectionURL,
         
         const db = client.db(database)
         
-        db.collection('tasks').findOne({_id: new ObjectID('5d9650f344b229558cdb5c82')}, (error, task) => {
-            if (error) {
-                return console.log('Unable to acquire task')
+        // const updatePromise = db.collection('users').updateOne({
+        //         _id = new ObjectID("5d964e2a055c671da810dbce")
+        // },  {
+        //         $set: { name: 'Mike'}
+        //     }
+        // )
+
+        // updatePromise.then((result) => {
+        //     console.log(result)
+        // }).catch((error) => {
+        //     console.log(error)
+        // })
+
+        // db.collection('users').findOne({_id: new ObjectID("5d964e2a055c671da810dbce")}, (error, result) => {
+        //     if (error) {
+        //         return console.log(error)
+        //     }
+
+        //     console.log(result)
+        // })
+
+        const updatePromise = db.collection('users').updateOne({
+            _id: new ObjectID("5d964e2a055c671da810dbce")
+        }, {
+            $set: {
+                name: 'Mike'
             }
-
-            console.log(task)
+        }).then((result) => {
+            console.log(result)
+        }).catch((error) => {
+            console.log(error)
         })
-
-        db.collection('tasks').find({completed: false}).toArray((error, tasks) => {
-            if (error) {
-                return console.log('Unable to acquire tasks')
-            }
-
-            console.log(tasks)
-        })
-        
     }
 )
 
