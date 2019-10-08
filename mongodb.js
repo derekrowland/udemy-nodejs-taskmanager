@@ -17,10 +17,7 @@ MongoClient.connect(connectionURL,
         
         const db = client.db(database)
         
-        db.collection('users').findOne(
-            {
-                _id: new ObjectID('5d964ffa4ab2552d682f4d9e')
-            }, (error, user) => {
+        db.collection('users').findOne( { _id: new ObjectID('5d964ffa4ab2552d682f4d9e') }, (error, user) => {
                 if (error) {
                     return console.log("Unable to fetch user")
                 }
@@ -28,6 +25,21 @@ MongoClient.connect(connectionURL,
                 console.log(user)
             }
         )
+
+        db.collection('users').find( { age: 31 }).toArray((error, users) => {
+            if (error) {
+                return console.log("Unable to fetch users")
+            }
+            console.log(users)
+        })
+        
+        db.collection('users').find( { age: 31 }).count((error, count) => {
+            if (error) {
+                return console.log("Unable to fetch users")
+            }
+            console.log(count)
+        })
+        
     }
 )
 
