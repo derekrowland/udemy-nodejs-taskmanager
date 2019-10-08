@@ -1,12 +1,21 @@
 // CRUD create read update delete
 
-const mongodb = require('mongodb')
-const mongoClient = mongodb.MongoClient
+// const mongodb = require('mongodb')
+// const mongoClient = mongodb.MongoClient
+
+const {MongoClient, ObjectID} = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const database = 'task-manager'
 
-mongoClient.connect(connectionURL, 
+const id = new ObjectID()
+console.log(id.id)
+console.log(id.id.length)
+console.log(id.toHexString())
+console.log(id.toHexString().length)
+
+
+MongoClient.connect(connectionURL, 
     {
         useNewUrlParser: true, 
         useUnifiedTopology: true
@@ -48,28 +57,29 @@ mongoClient.connect(connectionURL,
         //     }
         // )
 
-        db.collection('tasks').insertMany(
-            [
-                {
-                    description: 'Call David',
-                    completed: true
-                },
-                {
-                    description: 'Ride bike',
-                    completed: false
-                },
-                {
-                    description: 'Open package',
-                    complete: false
-                }
-            ], (error, result) => {
-                if (error) {
-                    return console.log('Unable to insert documents')
-                }
+        // db.collection('tasks').insertMany(
+        //     [
+        //         {
+        //             _id: id,
+        //             description: 'Call David',
+        //             completed: true
+        //         },
+        //         {
+        //             description: 'Ride bike',
+        //             completed: false
+        //         },
+        //         {
+        //             description: 'Open package',
+        //             complete: false
+        //         }
+        //     ], (error, result) => {
+        //         if (error) {
+        //             return console.log('Unable to insert tasks')
+        //         }
 
-                console.log(result.ops)
-            }
-        )
+        //         console.log(result.ops)
+        //     }
+        // )
     }
 )
 
